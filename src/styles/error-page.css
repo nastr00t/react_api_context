@@ -1,6 +1,10 @@
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,700);
 
-#custom-body-class {
+.errorPageBody {
+    background-color: white;
+}
+
+.customBodyClass {
     width: 80%;
     height: 80%;
     background: #48A9E6;
@@ -10,7 +14,7 @@
     padding: 0;
 }
 
-#title {
+.title {
     text-align: center;
     font-size: 40px;
     margin-top: 40px;
@@ -35,8 +39,10 @@
     background: #fff;
     text-align: center;
     position: relative;
-    margin-top: -60px;
-    box-shadow: inset -1px -4px 4px rgba(0, 0, 0, 0.2);
+    margin-top: 80px;
+    padding: 0;
+    box-shadow: none;
+    border: none;
 }
 
 .circles p {
@@ -47,6 +53,7 @@
     z-index: 9;
     line-height: 100%;
     font-weight: bold;
+    margin: 0;
 }
 
 .circles p small {
@@ -55,13 +62,16 @@
     vertical-align: top;
 }
 
-.circles .circle.small {
-    width: 140px;
-    height: 140px;
+.circle {
     border-radius: 50%;
-    background: #48A9E6;
     position: absolute;
     z-index: 1;
+    background: #48A9E6;
+}
+
+.small {
+    width: 140px;
+    height: 140px;
     top: 80px;
     left: 50%;
     animation: 7s smallmove infinite cubic-bezier(1, .22, .71, .98);
@@ -70,13 +80,9 @@
     -webkit-animation-delay: 1.2s;
 }
 
-.circles .circle.med {
+.med {
     width: 200px;
     height: 200px;
-    border-radius: 50%;
-    background: #48A9E6;
-    position: absolute;
-    z-index: 1;
     top: 0;
     left: 10%;
     animation: 7s medmove infinite cubic-bezier(.32, .04, .15, .75);
@@ -85,13 +91,9 @@
     -webkit-animation-delay: 0.4s;
 }
 
-.circles .circle.big {
+.big {
     width: 400px;
     height: 400px;
-    border-radius: 50%;
-    background: #48A9E6;
-    position: absolute;
-    z-index: 1;
     top: 200px;
     right: 0;
     animation: 8s bigmove infinite;
@@ -289,4 +291,5 @@
         top: 0px;
         right: 4%;
         opacity: 0.5;
-    }}
+    }
+}
