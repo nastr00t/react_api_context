@@ -16,6 +16,7 @@ function App() {
   // Inicializa el estado del modo oscuro con el valor de localStorage si existe
   const [isDarkMode, setIsDarkMode] = useState(() => {
     const darkMode = JSON.parse(localStorage.getItem('darkMode'));
+
     return darkMode || false;
   });
 
@@ -23,12 +24,14 @@ function App() {
   useEffect(() => {
     // Convierte el estado `user` a una cadena JSON y lo almacena en localStorage
     localStorage.setItem("user", JSON.stringify(user));
+
   }, [user]); // El efecto se ejecuta cada vez que el estado `user` cambia
 
   // Este useEffect se ejecuta cada vez que cambia el estado `isDarkMode`
   useEffect(() => {
     localStorage.setItem('darkMode', JSON.stringify(isDarkMode));
     document.body.classList.toggle('dark-mode', isDarkMode);
+
   }, [isDarkMode]);
 
   // Función para alternar el modo oscuro
