@@ -5,13 +5,21 @@ import { ErrorPage } from "../components/ErrorPage";
 import { About } from "../components/About";
 import { Contact } from "../components/Contact";
 import { Login } from "../components/Login";
-
+import logo from '../assets/logo.png'
+import { useContext } from "react";
+import { Context } from "../context/Context";
+import { DarkMode } from '../components/DarkMode';
 export const AppRouter = () => {
+
+    const { user, setUser } = useContext(Context);
+
     return (
         <Router>
             {/* Menú de Navegación */}
             <header className="header-nav">
                 <nav>
+                    <div className="logo"><img className="logo-img" src={logo} alt="" /></div>
+
                     <ul>
                         <li>
                             <NavLink to='/' >Inicio</NavLink>
@@ -25,23 +33,44 @@ export const AppRouter = () => {
                         <li>
                             <NavLink to='/contacto' >Contacto</NavLink>
                         </li>
+                        {user.username !== null ? (
+                            <>
+                                <li>
+                                    <NavLink to="/" id="text-username" >{user.username}</NavLink>
+                                </li>
+                                <li>
+                                    <a onClick={e => {
+                                        e.preventDefault();
+                                        setUser({ username: null })
+                                    }}  >Cerrar Sesíon</a>
+                                </li>
+                            </>
+
+
+                        ) : (
+                                <li>
+                                    <NavLink to='/login' >Identifícate</NavLink>
+                                </li>
+                        )}
                         <li>
-                            <NavLink to='/login' >Identifícate</NavLink>
+                            <DarkMode />
                         </li>
                     </ul>
                 </nav>
             </header>
             {/* Configurar rutas */}
-            <Routes>
-                <Route path='/' element={<Home />}></Route>
-                <Route path='/inicio' element={<Home />}></Route>
-                <Route path='/articulos' element={<Articles />}></Route>
-                <Route path='/acerca-de' element={<About />}></Route>
-                <Route path='/contacto' element={<Contact />}></Route>
-                <Route path='/login' element={<Login />}></Route>
+            <section >
+                <Routes>
+                    <Route path='/' element={<div className="content"> <Home /></div>}></Route>
+                    <Route path='/inicio' element={<div className="content"><Home /></div>}></Route>
+                    <Route path='/articulos' element={<div className="content"><Articles /></div>}></Route>
+                    <Route path='/acerca-de' element={<div className="content"><About /></div>}></Route>
+                    <Route path='/contacto' element={<div className="content"><Contact /></div>}></Route>
+                    <Route path='/login' element={<div className="content"><Login /></div>}></Route>
 
                 <Route path='*' element={<ErrorPage />}></Route>
-            </Routes>
+                </Routes>
+            </section>
         </Router>
     )
 }
